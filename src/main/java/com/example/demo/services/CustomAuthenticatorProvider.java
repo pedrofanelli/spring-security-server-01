@@ -11,35 +11,41 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomAuthProvider implements AuthenticationProvider {
+public class CustomAuthenticatorProvider implements AuthenticationProvider {
 
 	//@Autowired
-    //private JpaUserDetailsService userDetailsService;
+    //private CustomUserDetailsService userDetailsService;
+    
+    @Autowired
+    private CustomUserDetailsManager userDetailsManager;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-	
-	@Override
+    
+    @Override
     public Authentication authenticate (Authentication authentication) throws AuthenticationException {
-		String username = authentication.getName();
+        
+        String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        CustomUserDetails user = userDetailsService.loadUserByUsername(username);
+        //SecurityUser user = userDetailsService.loadUserByUsername(username);
+        
+        SecurityUser user = userDetailsManager.loadUserByUsername(username);
 
-       
+        if (user == null) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+        
         return checkPassword(user, password, bCryptPasswordEncoder);
-            
 
-        throw new  BadCredentialsException("Bad credentials");
     }
     
     @Override
     public boolean supports(Class<?> authenticationType) {
-    	return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authenticationType);
+        return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authenticationType);
     }
     
-    private Authentication checkPassword(CustomUserDetails user, String rawPassword, PasswordEncoder encoder) {
+    private Authentication checkPassword(SecurityUser user, String rawPassword, PasswordEncoder encoder) {
         if (encoder.matches(rawPassword, user.getPassword())) {
             return new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
         } else {
