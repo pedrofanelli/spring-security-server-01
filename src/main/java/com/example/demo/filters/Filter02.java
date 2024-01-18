@@ -21,7 +21,7 @@ public class Filter02 extends OncePerRequestFilter {
         HttpServletResponse httpResponse = response;
         String requestId = request.getHeader("Custom-Header");
         if (requestId == null || requestId.equals("")) {
-            System.out.println("REQUEST ID HEADER ES NULL :(((!!");
+            System.out.println("REQUEST ID HEADER ES NULL :(((");
         } else {
             System.out.println("EL HEADER ID ES: "+requestId);
         }
@@ -34,11 +34,11 @@ public class Filter02 extends OncePerRequestFilter {
             if (principal instanceof UserDetails) {
                 System.out.println("INSTANCIAAAA");
                 username = ((UserDetails) principal).getUsername();
+                System.out.println(((UserDetails) principal).getPassword()); 
             } else {
                 username = principal.toString();
             }
             System.out.println("NOMBREEE "+username);
-            
             
         } else {
             System.out.println("No authenticated user");

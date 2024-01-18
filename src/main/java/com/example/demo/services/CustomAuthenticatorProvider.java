@@ -50,7 +50,7 @@ public class CustomAuthenticatorProvider implements AuthenticationProvider {
     
     private Authentication checkPassword(SecurityUser user, String rawPassword, PasswordEncoder encoder) {
         if (encoder.matches(rawPassword, user.getPassword())) {
-            return new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
+            return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
         } else {
             throw new BadCredentialsException("Bad credentials");
         }

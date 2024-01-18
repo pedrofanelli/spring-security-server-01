@@ -21,10 +21,10 @@ public class Filter01 extends OncePerRequestFilter {
             //httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             //return;
             response.setHeader("Custom-Header", "161616");
-            System.out.println("REQUEST ID HEADER ES NULL!!");
+            System.out.println("REQUEST ID HEADER ES NULL!");
         }
         
-        System.out.println("SEGUIMOOOOOOOOH");
+        System.out.println(response.getHeader("Custom-Header"));
         filterChain.doFilter(request, response);
         
     }

@@ -24,7 +24,7 @@ public class WebAuthorizationConfig {
         http
             .formLogin(c -> c.defaultSuccessUrl("/hello", true))
             .addFilterBefore(new Filter01(), BasicAuthenticationFilter.class)
-            .addFilterAfter(new Filter02(), BasicAuthenticationFilter.class)
+            .addFilterBefore(new Filter02(), BasicAuthenticationFilter.class)
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests(c -> c.requestMatchers("/hello").hasRole("USER")
             		                     .requestMatchers("/ciao").hasRole("ADMIN")
