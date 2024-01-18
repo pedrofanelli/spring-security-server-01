@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.SecurityUser;
+
 @Service
 public class CustomAuthenticatorProvider implements AuthenticationProvider {
 

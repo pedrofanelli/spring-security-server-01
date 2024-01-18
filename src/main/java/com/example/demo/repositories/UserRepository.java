@@ -2,6 +2,8 @@ package com.example.demo.repositories;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entities.EntityUser;
+
 /**
  * En realidad sería una interfaz de JPA, buscando el objeto en la base
  */
