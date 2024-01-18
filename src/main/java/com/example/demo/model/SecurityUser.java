@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.example.demo.entities.EntityUser;
+
 public class SecurityUser implements UserDetails {
 
 	private final EntityUser entityUser;
