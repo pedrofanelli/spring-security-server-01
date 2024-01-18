@@ -26,7 +26,8 @@ public class WebAuthorizationConfig {
             .addFilterBefore(new Filter01(), BasicAuthenticationFilter.class)
             .addFilterAfter(new Filter02(), BasicAuthenticationFilter.class)
             .authenticationProvider(authenticationProvider)
-            .authorizeHttpRequests(c -> c.anyRequest().authenticated()
+            .authorizeHttpRequests(c -> c.requestMatchers("/hello").hasRole("USER")
+            		                     .requestMatchers("/ciao").hasRole("ADMIN")
             
         	/*
         	.authorizeRequests(authorizeRequests ->
