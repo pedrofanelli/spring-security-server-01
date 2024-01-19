@@ -13,6 +13,6 @@ public class MainController {
     
     @GetMapping("/ciao")
     public String ciao() {
-        return "Ciao!";
+        return "<a href=\"/oauth2/authorization/google\">Google</a>";
     }
 }
