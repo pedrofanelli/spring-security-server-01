@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.security.web.csrf.CsrfFilter;
 
 import com.example.demo.filters.Filter01;
 import com.example.demo.filters.Filter02;
@@ -24,8 +23,8 @@ public class WebAuthorizationConfig {
         
         http
             .formLogin(c -> c.defaultSuccessUrl("/hello", true))
-            .addFilterBefore(new Filter01(), CsrfFilter.class)
-            .addFilterBefore(new Filter02(), CsrfFilter.class)
+            .addFilterBefore(new Filter01(), BasicAuthenticationFilter.class)
+            .addFilterBefore(new Filter02(), BasicAuthenticationFilter.class)
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests(c -> c.requestMatchers("/hello").hasRole("USER")
             		                     .requestMatchers("/ciao").hasRole("ADMIN")
