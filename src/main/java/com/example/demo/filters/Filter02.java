@@ -21,9 +21,8 @@ public class Filter02 extends OncePerRequestFilter {
 	@Override
     public void doFilterInternal (HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         
-        HttpServletRequest httpRequest = request;
-        HttpServletResponse httpResponse = response;
-        String requestId = request.getHeader("Custom-Header");
+        
+        String requestId = response.getHeader("Custom-Header");
         if (requestId == null || requestId.equals("")) {
             System.out.println("REQUEST ID HEADER ES NULL :(((");
         } else {
@@ -52,6 +51,6 @@ public class Filter02 extends OncePerRequestFilter {
         System.out.println(request.getSession().getId());
         
         filterChain.doFilter(request, response);
-        return;
+        
     }
 }
