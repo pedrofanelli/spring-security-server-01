@@ -254,10 +254,12 @@ public class MainController {
         animalFlux.any(a -> a.contains("t")).log().subscribe(x -> System.out.println(x));
         */
         
+    	
+    	
         return "Project Reactor";
     }
     
-    
+    /*
     private static class Player {
         private final String firstName;
         private final String lastName;
@@ -272,7 +274,7 @@ public class MainController {
             return lastName;
         }
     }
-    	
+   	*/
     	
     	
     	

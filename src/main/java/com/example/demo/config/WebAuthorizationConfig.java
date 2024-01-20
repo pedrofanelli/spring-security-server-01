@@ -7,8 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import com.example.demo.filters.Filter01;
-import com.example.demo.filters.Filter02;
+//import com.example.demo.filters.Filter01;
+//import com.example.demo.filters.Filter02;
 import com.example.demo.services.CustomAuthenticatorProvider;
 
 import org.springframework.security.web.savedrequest.NullRequestCache;
@@ -40,8 +40,8 @@ public class WebAuthorizationConfig {
         http
         	.oauth2Login(c -> c.defaultSuccessUrl("/hello", true))
             .formLogin(c -> c.defaultSuccessUrl("/hello", true))
-            .addFilterBefore(new Filter01(), BasicAuthenticationFilter.class)
-            .addFilterBefore(new Filter02(), BasicAuthenticationFilter.class)
+            //.addFilterBefore(new Filter01(), BasicAuthenticationFilter.class)
+            //.addFilterBefore(new Filter02(), BasicAuthenticationFilter.class)
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests(c -> 
             							//c.requestMatchers("/hello").hasRole("USER")
